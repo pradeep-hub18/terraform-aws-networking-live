@@ -19,6 +19,7 @@ on:
           - plan
           - apply
           - destroy
+          - refresh
 
 permissions:
   contents: read
