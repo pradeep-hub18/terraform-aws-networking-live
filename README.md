@@ -82,3 +82,31 @@ terraform apply
 ```
 
 Environment-specific values are stored in each environment's `terraform.tfvars` file. The `main.tf` files only call the reusable networking module.
+
+## GitHub Actions
+
+Terraform runs manually from GitHub Actions.
+
+Workflow:
+
+```text
+.github/workflows/terraform.yml
+```
+
+Required GitHub repository secrets:
+
+```text
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+```
+
+The workflow asks for:
+
+```text
+environment: DEV or STAGE
+action: plan or apply
+```
+
+`terraform apply` runs only when you manually choose `apply`. If you choose `plan`, the workflow runs format check, init, validate, and plan only.
+
+For extra protection, create GitHub Environments named `DEV` and `STAGE` in repository settings. Add required reviewers to `STAGE` if you want approval before apply runs there.
