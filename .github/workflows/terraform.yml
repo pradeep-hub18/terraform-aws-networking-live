@@ -70,3 +70,10 @@ jobs:
       - name: Terraform apply
         if: github.event.inputs.action == 'apply'
         run: terraform apply -input=false -auto-approve tfplan
+        
+     - name: Terraform refresh-only
+        if: github.event.inputs.action == 'refresh'
+        run: terraform apply -refresh-only -input=false -auto-approve
+     - name: Terraform destroy
+        if: github.event.inputs.action == 'destroy'
+        run: terraform destroy -input=false -auto-approve
