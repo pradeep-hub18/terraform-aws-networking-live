@@ -18,6 +18,7 @@ on:
         options:
           - plan
           - apply
+          - destroy
 
 permissions:
   contents: read
