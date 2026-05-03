@@ -23,14 +23,14 @@ variable "public_subnet_cidr" {
   type        = string
 }
 
-variable "private_subnet_cidr" {
-  description = "CIDR block for the private subnet."
-  type        = string
+variable "private_subnet_cidrs" {
+  description = "CIDR blocks for the private subnets."
+  type        = list(string)
 }
 
-variable "availability_zone" {
-  description = "Availability zone for both subnets."
-  type        = string
+variable "availability_zones" {
+  description = "Availability zones for the subnets."
+  type        = list(string)
 }
 
 variable "tags" {

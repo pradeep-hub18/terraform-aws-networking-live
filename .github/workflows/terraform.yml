@@ -1,8 +1,15 @@
-name: Terraform
+name: Terraform AWS Resources
 
 on:
   workflow_dispatch:
     inputs:
+      component:
+        description: "Terraform component to run"
+        required: true
+        type: choice
+        options:
+          - networking
+          - eks
       environment:
         description: "Terraform environment to run"
         required: true
@@ -25,19 +32,19 @@ permissions:
   contents: read
 
 concurrency:
-  group: terraform-${{ github.event.inputs.environment }}
+  group: terraform-${{ inputs.component }}-${{ inputs.environment }}
   cancel-in-progress: false
 
 jobs:
   terraform:
-    name: Terraform ${{ github.event.inputs.action }} - ${{ github.event.inputs.environment }}
+    name: Terraform ${{ inputs.action }} - ${{ inputs.component }} - ${{ inputs.environment }}
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment }}
+    environment: ${{ inputs.environment }}
 
     defaults:
       run:
         shell: bash
-        working-directory: environments/${{ github.event.inputs.environment }}
+        working-directory: ${{ inputs.component }}/environments/${{ inputs.environment }}
 
     steps:
       - name: Checkout repository
@@ -65,17 +72,25 @@ jobs:
         run: terraform validate
 
       - name: Terraform plan
-        if: github.event.inputs.action == 'plan' || github.event.inputs.action == 'apply'
+        if: inputs.action == 'plan' || inputs.action == 'apply'
         run: terraform plan -input=false -out=tfplan
 
       - name: Terraform apply
-        if: github.event.inputs.action == 'apply'
+        if: inputs.action == 'apply'
         run: terraform apply -input=false -auto-approve tfplan
 
-      - name: Terraform refresh-only
-        if: github.event.inputs.action == 'refresh'
-        run: terraform apply -refresh-only -input=false -auto-approve
+      - name: Terraform destroy plan
+        if: inputs.action == 'destroy'
+        run: terraform plan -destroy -input=false
 
       - name: Terraform destroy
-        if: github.event.inputs.action == 'destroy'
+        if: inputs.action == 'destroy'
         run: terraform destroy -input=false -auto-approve
+
+      - name: Terraform refresh plan
+        if: inputs.action == 'refresh'
+        run: terraform plan -refresh-only -input=false
+
+      - name: Terraform refresh
+        if: inputs.action == 'refresh'
+        run: terraform apply -refresh-only -input=false -auto-approve

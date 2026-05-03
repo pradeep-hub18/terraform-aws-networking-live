@@ -9,8 +9,13 @@ output "public_subnet_id" {
 }
 
 output "private_subnet_id" {
-  description = "ID of the private subnet."
+  description = "ID of the first private subnet."
   value       = module.networking.private_subnet_id
+}
+
+output "private_subnet_ids" {
+  description = "IDs of the private subnets."
+  value       = module.networking.private_subnet_ids
 }
 
 output "internet_gateway_id" {
