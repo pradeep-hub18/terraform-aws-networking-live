@@ -37,3 +37,8 @@ output "node_group_iam_role_arn" {
   description = "ARN of the IAM role used by the EKS managed node group."
   value       = module.eks.node_group_iam_role_arn
 }
+
+output "node_group_autoscaling_group_names" {
+  description = "Auto Scaling Group names backing the EKS managed node group."
+  value       = module.eks.node_group_autoscaling_group_names
+}

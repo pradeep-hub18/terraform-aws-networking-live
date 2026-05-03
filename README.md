@@ -1,6 +1,6 @@
 # Terraform AWS Resources Provision
 
-Live Terraform configurations for AWS networking and EKS resources.
+Live Terraform configurations for AWS networking, EKS, and NLB resources.
 
 ## Structure
 
@@ -14,6 +14,10 @@ terraform-aws-resources-provision/
 |   +-- environments/
 |       +-- DEV/
 |       +-- STAGE/
++-- nlb/
+|   +-- environments/
+|       +-- DEV/
+|       +-- STAGE/
 +-- .github/
     +-- workflows/
         +-- terraform.yml
@@ -21,12 +25,17 @@ terraform-aws-resources-provision/
 
 ## Run Order
 
-Apply networking first, then EKS.
+Apply networking first, then EKS, then NLB.
 
 EKS reads these networking remote state outputs:
 
 - `vpc_id`
 - `private_subnet_ids`
+
+NLB reads these remote state outputs:
+
+- From networking: `vpc_id`, `public_subnet_ids`
+- From EKS: `node_group_autoscaling_group_names`
 
 ## Remote State
 
@@ -45,6 +54,8 @@ networking/DEV/terraform.tfstate
 networking/STAGE/terraform.tfstate
 eks/DEV/terraform.tfstate
 eks/STAGE/terraform.tfstate
+nlb/DEV/terraform.tfstate
+nlb/STAGE/terraform.tfstate
 ```
 
 ## GitHub Actions
@@ -58,7 +69,7 @@ Workflow:
 Manual inputs:
 
 ```text
-component: networking or eks
+component: networking, eks, or nlb
 environment: DEV or STAGE
 action: plan, apply, destroy, or refresh
 ```

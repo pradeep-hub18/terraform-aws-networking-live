@@ -4,8 +4,13 @@ output "vpc_id" {
 }
 
 output "public_subnet_id" {
-  description = "ID of the public subnet."
+  description = "ID of the first public subnet."
   value       = module.networking.public_subnet_id
+}
+
+output "public_subnet_ids" {
+  description = "IDs of the public subnets."
+  value       = module.networking.public_subnet_ids
 }
 
 output "private_subnet_id" {

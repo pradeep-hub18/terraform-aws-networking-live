@@ -10,6 +10,7 @@ on:
         options:
           - networking
           - eks
+          - nlb
       environment:
         description: "Terraform environment to run"
         required: true
