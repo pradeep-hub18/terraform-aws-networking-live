@@ -42,3 +42,18 @@ output "node_group_autoscaling_group_names" {
   description = "Auto Scaling Group names backing the EKS managed node group."
   value       = module.eks.node_group_autoscaling_group_names
 }
+
+output "argocd_namespace" {
+  description = "Namespace where Argo CD is installed."
+  value       = module.eks.argocd_namespace
+}
+
+output "argocd_release_name" {
+  description = "Helm release name for Argo CD."
+  value       = module.eks.argocd_release_name
+}
+
+output "argocd_chart_version" {
+  description = "Deployed Argo CD Helm chart version."
+  value       = module.eks.argocd_chart_version
+}

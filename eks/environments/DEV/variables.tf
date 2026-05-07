@@ -61,6 +61,36 @@ variable "endpoint_public_access" {
   default     = true
 }
 
+variable "enable_argocd" {
+  description = "Whether to install Argo CD into the EKS cluster."
+  type        = bool
+  default     = true
+}
+
+variable "argocd_namespace" {
+  description = "Kubernetes namespace where Argo CD will be installed."
+  type        = string
+  default     = "argocd"
+}
+
+variable "argocd_release_name" {
+  description = "Helm release name for Argo CD."
+  type        = string
+  default     = "argocd"
+}
+
+variable "argocd_chart_version" {
+  description = "Optional Argo CD Helm chart version. Leave null to use the latest chart available from the repository."
+  type        = string
+  default     = null
+}
+
+variable "argocd_values" {
+  description = "Optional Helm values YAML documents to pass to the Argo CD chart."
+  type        = list(string)
+  default     = []
+}
+
 variable "networking_state_bucket" {
   description = "S3 bucket containing the networking Terraform state."
   type        = string

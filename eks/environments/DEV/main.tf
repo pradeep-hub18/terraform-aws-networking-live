@@ -9,7 +9,7 @@ data "terraform_remote_state" "networking" {
 }
 
 module "eks" {
-  source = "git::https://github.com/pradeep-hub18/my-terraform-modules.git//modules/eks?ref=v1.2.0"
+  source = "git::https://github.com/pradeep-hub18/my-terraform-modules.git//modules/eks?ref=v1.3.0"
 
   project_name            = var.project_name
   environment             = var.environment
@@ -23,5 +23,10 @@ module "eks" {
   node_min_size           = var.node_min_size
   node_max_size           = var.node_max_size
   node_disk_size          = var.node_disk_size
+  enable_argocd           = var.enable_argocd
+  argocd_namespace        = var.argocd_namespace
+  argocd_release_name     = var.argocd_release_name
+  argocd_chart_version    = var.argocd_chart_version
+  argocd_values           = var.argocd_values
   tags                    = var.tags
 }

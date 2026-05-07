@@ -12,6 +12,12 @@ node_disk_size      = 20
 endpoint_private_access = true
 endpoint_public_access  = true
 
+enable_argocd        = true
+argocd_namespace     = "argocd"
+argocd_release_name  = "argocd"
+argocd_chart_version = null
+argocd_values        = []
+
 networking_state_bucket = "padeep-demo-network-terraform-state"
 networking_state_key    = "networking/STAGE/terraform.tfstate"
 networking_state_region = "ap-south-1"

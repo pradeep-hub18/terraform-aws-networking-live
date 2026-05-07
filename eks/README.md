@@ -5,7 +5,7 @@ This repository contains live Terraform configurations for Amazon EKS DEV and ST
 The reusable EKS module is sourced from:
 
 ```hcl
-git::https://github.com/pradeep-hub18/my-terraform-modules.git//modules/eks?ref=v1.1.0
+git::https://github.com/pradeep-hub18/my-terraform-modules.git//modules/eks?ref=v1.3.0
 ```
 
 Each environment reads the networking remote state to get:
@@ -20,6 +20,8 @@ Resources created by the EKS module:
 - Allow-all EKS security group
 - EKS cluster
 - EKS managed node group with two `t3.large` workers by default
+- Argo CD namespace named `argocd`
+- Argo CD Helm release named `argocd`
 
 ## Folder Structure
 
@@ -81,7 +83,19 @@ AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
 ```
 
-The workflow downloads the reusable EKS module from the `v1.1.0` Git tag.
+The workflow downloads the reusable EKS module from the `v1.3.0` Git tag.
+
+Argo CD is enabled by default in each environment:
+
+```hcl
+enable_argocd        = true
+argocd_namespace     = "argocd"
+argocd_release_name  = "argocd"
+argocd_chart_version = null
+argocd_values        = []
+```
+
+Set `enable_argocd = false` in an environment tfvars file to skip the Argo CD install.
 
 The workflow asks for:
 
