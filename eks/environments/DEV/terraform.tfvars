@@ -18,7 +18,7 @@ argocd_release_name  = "argocd"
 argocd_chart_version = null
 argocd_values        = []
 
-networking_state_bucket = "padeep-demo-network-terraform-state"
+networking_state_bucket = "pradeep-demo-network-terraform-state"
 networking_state_key    = "networking/DEV/terraform.tfstate"
 networking_state_region = "ap-south-1"
 

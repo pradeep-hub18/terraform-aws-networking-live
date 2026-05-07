@@ -9,11 +9,11 @@ target_port                = 30080
 health_check_port          = "traffic-port"
 health_check_protocol      = "TCP"
 
-networking_state_bucket = "padeep-demo-network-terraform-state"
+networking_state_bucket = "pradeep-demo-network-terraform-state"
 networking_state_key    = "networking/STAGE/terraform.tfstate"
 networking_state_region = "ap-south-1"
 
-eks_state_bucket = "padeep-demo-network-terraform-state"
+eks_state_bucket = "pradeep-demo-network-terraform-state"
 eks_state_key    = "eks/STAGE/terraform.tfstate"
 eks_state_region = "ap-south-1"
 
