@@ -4,9 +4,9 @@ environment     = "DEV"
 cluster_version = "1.30"
 
 node_instance_types = ["t3.large"]
-node_desired_size   = 2
+node_desired_size   = 3
 node_min_size       = 2
-node_max_size       = 2
+node_max_size       = 4
 node_disk_size      = 20
 
 endpoint_private_access = true
