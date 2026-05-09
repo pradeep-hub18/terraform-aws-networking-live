@@ -83,15 +83,15 @@ jobs:
 
       - name: Terraform destroy plan
         if: inputs.action == 'destroy'
-        run: terraform plan -destroy -input=false
+        run: terraform plan -destroy -input=false -lock=false
 
       - name: Terraform destroy
         if: inputs.action == 'destroy'
-        run: terraform destroy -input=false -auto-approve
+        run: terraform destroy -input=false -auto-approve -lock=false
 
       - name: Terraform refresh plan
         if: inputs.action == 'refresh'
-        run: terraform plan -refresh-only -input=false
+        run: terraform plan -refresh-only -input=false 
 
       - name: Terraform refresh
         if: inputs.action == 'refresh'
