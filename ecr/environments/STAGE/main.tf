@@ -1,5 +1,5 @@
 module "ecr" {
-  source = "git::https://github.com/pradeep-hub18/my-terraform-modules.git//modules/ecr?ref=v1.4.0"
+  source = "git::https://github.com/pradeep-hub18/my-terraform-modules.git//modules/ecr?ref=v1.5.2"
 
   project_name                          = var.project_name
   environment                           = var.environment
