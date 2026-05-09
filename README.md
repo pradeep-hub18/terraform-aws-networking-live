@@ -1,6 +1,6 @@
 # Terraform AWS Resources Provision
 
-Live Terraform configurations for AWS networking, EKS, and NLB resources.
+Live Terraform configurations for AWS networking, EKS, NLB, and ECR resources.
 
 ## Structure
 
@@ -18,6 +18,10 @@ terraform-aws-resources-provision/
 |   +-- environments/
 |       +-- DEV/
 |       +-- STAGE/
++-- ecr/
+|   +-- environments/
+|       +-- DEV/
+|       +-- STAGE/
 +-- .github/
     +-- workflows/
         +-- terraform.yml
@@ -25,7 +29,7 @@ terraform-aws-resources-provision/
 
 ## Run Order
 
-Apply networking first, then EKS, then NLB.
+Apply networking first, then EKS, then NLB. ECR can be applied independently before the Jenkins image push pipeline.
 
 EKS reads these networking remote state outputs:
 
@@ -42,7 +46,7 @@ NLB reads these remote state outputs:
 Both components use the same S3 bucket and DynamoDB lock table:
 
 ```text
-bucket: padeep-demo-network-terraform-state
+bucket: pradeep-demo-network-terraform-state
 dynamodb_table: demo-network-terraform-locks
 region: ap-south-1
 ```
@@ -56,6 +60,8 @@ eks/DEV/terraform.tfstate
 eks/STAGE/terraform.tfstate
 nlb/DEV/terraform.tfstate
 nlb/STAGE/terraform.tfstate
+ecr/DEV/terraform.tfstate
+ecr/STAGE/terraform.tfstate
 ```
 
 ## GitHub Actions
@@ -69,7 +75,7 @@ Workflow:
 Manual inputs:
 
 ```text
-component: networking, eks, or nlb
+component: networking, eks, nlb, or ecr
 environment: DEV or STAGE
 action: plan, apply, destroy, or refresh
 ```

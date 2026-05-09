@@ -11,6 +11,7 @@ on:
           - networking
           - eks
           - nlb
+          - ecr
       environment:
         description: "Terraform environment to run"
         required: true
