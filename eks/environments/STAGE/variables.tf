@@ -91,6 +91,42 @@ variable "argocd_values" {
   default     = []
 }
 
+variable "enable_aws_load_balancer_controller" {
+  description = "Whether to install AWS Load Balancer Controller."
+  type        = bool
+  default     = true
+}
+
+variable "enable_ebs_csi_driver" {
+  description = "Whether to install AWS EBS CSI driver."
+  type        = bool
+  default     = true
+}
+
+variable "enable_ebs_gp3_storage_class" {
+  description = "Whether to create a default gp3 StorageClass."
+  type        = bool
+  default     = true
+}
+
+variable "enable_istio" {
+  description = "Whether to install Istio base and istiod."
+  type        = bool
+  default     = true
+}
+
+variable "enable_istio_ingress_gateway" {
+  description = "Whether to install Istio ingress gateway."
+  type        = bool
+  default     = true
+}
+
+variable "istio_ingress_gateway_service_type" {
+  description = "Service type for Istio ingress gateway. Use ClusterIP when exposing through AWS Load Balancer Controller ALB Ingress."
+  type        = string
+  default     = "ClusterIP"
+}
+
 variable "networking_state_bucket" {
   description = "S3 bucket containing the networking Terraform state."
   type        = string

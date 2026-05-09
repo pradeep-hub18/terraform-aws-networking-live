@@ -18,6 +18,13 @@ argocd_release_name  = "argocd"
 argocd_chart_version = null
 argocd_values        = []
 
+enable_aws_load_balancer_controller = true
+enable_ebs_csi_driver               = true
+enable_ebs_gp3_storage_class        = true
+enable_istio                        = true
+enable_istio_ingress_gateway        = true
+istio_ingress_gateway_service_type  = "ClusterIP"
+
 networking_state_bucket = "pradeep-demo-network-terraform-state"
 networking_state_key    = "networking/STAGE/terraform.tfstate"
 networking_state_region = "ap-south-1"

@@ -57,3 +57,43 @@ output "argocd_chart_version" {
   description = "Deployed Argo CD Helm chart version."
   value       = module.eks.argocd_chart_version
 }
+
+output "aws_load_balancer_controller_role_arn" {
+  description = "IAM role ARN used by AWS Load Balancer Controller."
+  value       = module.eks.aws_load_balancer_controller_role_arn
+}
+
+output "aws_load_balancer_controller_release_name" {
+  description = "Helm release name for AWS Load Balancer Controller."
+  value       = module.eks.aws_load_balancer_controller_release_name
+}
+
+output "ebs_csi_role_arn" {
+  description = "IAM role ARN used by AWS EBS CSI driver."
+  value       = module.eks.ebs_csi_role_arn
+}
+
+output "ebs_csi_addon_arn" {
+  description = "ARN of the AWS EBS CSI EKS add-on."
+  value       = module.eks.ebs_csi_addon_arn
+}
+
+output "ebs_gp3_storage_class_name" {
+  description = "Name of the gp3 EBS StorageClass."
+  value       = module.eks.ebs_gp3_storage_class_name
+}
+
+output "istio_namespace" {
+  description = "Namespace where Istio is installed."
+  value       = module.eks.istio_namespace
+}
+
+output "istiod_release_name" {
+  description = "Helm release name for istiod."
+  value       = module.eks.istiod_release_name
+}
+
+output "istio_ingress_gateway_release_name" {
+  description = "Helm release name for Istio ingress gateway."
+  value       = module.eks.istio_ingress_gateway_release_name
+}
